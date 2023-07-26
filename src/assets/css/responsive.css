@@ -1,0 +1,228 @@
+@media (max-width: 1000px) {
+    section {
+        padding: 16px;
+    }
+
+    input[type="search"] {
+        width: 70%;
+        height: 44px;
+        padding: 14px;
+        font-size: 14px;
+    }
+
+    .title-section {
+        margin: 16px 0;
+        font-size: 20px;
+    }
+
+    .card {
+        padding: 8px;
+        width: 200px;
+    }
+
+    .card img {
+        margin-bottom: 6px;
+        border-radius: 6px;
+    }
+
+    button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .song-picture img {
+        width: 60%;
+    }
+    
+    .title {
+        margin: 4px;
+        font-size: 14px;
+    }
+    
+    .artist {
+        font-size: 12px;
+    }
+
+    #player .player-song {
+        padding: 16px;
+    }
+
+    #player .details {
+        margin-bottom: 16px;
+    }
+
+    #player .title {
+        margin: 10px;
+        font-size: 24px;
+    }
+    
+    #player .artist {
+        margin: 10px;
+        font-size: 16px;
+    }
+
+    .play-button , .previous-button, .next-button, .add-song-button, .delete-song-button{
+        margin: 0 8px;
+        font-size: 14px;
+    }
+    
+    .progress-bar {
+        margin: 12px;
+    }
+
+    .time-display {
+        font-size: 16px;
+        margin: 8px;
+    }
+
+    #playlist-header .playlist-song {
+        padding: 20px 20px;
+    }
+
+    .playlist-picture img {
+        width: 60%;
+    }
+        
+    #playlist-header .playlist-title {
+        margin: 8px;
+        font-size: 24px;
+    }
+        
+    .audio-player {
+        width: 85%;
+    }
+      
+    #playlist-song .player-song {
+        padding: 8px 8px;
+        margin-bottom: 8px;
+    }
+    
+    #playlist-song .title{
+        margin: 16px 16px;
+        font-size: 16px;
+    }
+    
+    #playlist-song .artist, .time {
+        margin: 16px 16px;
+        font-size: 14px;
+    }
+    
+    #playlist-song .controls-song {
+        margin: 6px 6px;
+    }  
+}
+
+@media (max-width: 670px) {
+    section {
+        padding: 12px;
+    }
+
+    input[type="search"] {
+        width: 90%;
+        height: 40px;
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    .title-section {
+        margin: 12px 0;
+        font-size: 16px;
+    }
+
+    .card {
+        padding: 6px;
+        width: 160px;
+        margin: 2px;
+    }
+
+    .card img {
+        margin-bottom: 4px;
+        border-radius: 4px;
+    }
+
+    button {
+        width: 28px;
+        height: 28px;
+    }
+
+    .song-picture img {
+        width: 70%;
+    }
+
+    .title {
+        font-size: 12px;
+    }
+    
+    .artist {
+        font-size: 10px;
+    }
+
+    #player .player-song {
+        padding: 12px;
+    }
+
+    #player .details {
+        margin-bottom: 12px;
+    }
+
+    #player .title {
+        margin: 8px;
+        font-size: 20px;
+    }
+    
+    #player .artist {
+        margin: 8px;
+        font-size: 12px;
+    }
+
+    .play-button , .previous-button, .next-button, .add-song-button, .delete-song-button{
+        margin: 0 6px;
+        font-size: 12px;
+    }
+
+    .progress-bar {
+        margin: 8px;
+        height: 8px;
+    }
+
+    .time-display {
+        font-size: 12px;
+        margin: 6px;
+    }
+
+    #playlist-header .playlist-song {
+        padding: 16px 16px;
+    }
+
+    .playlist-picture img {
+        width: 70%;
+    }
+
+    #playlist-header .playlist-title {
+        margin: 6px;
+        font-size: 20px;
+    }
+        
+    .audio-player {
+        width: 90%;
+    }
+      
+    #playlist-song .player-song {
+        padding: 6px 6px;
+        margin-bottom: 6px;
+    }
+    
+    #playlist-song .title{
+        margin: 12px 12px;
+        font-size: 12px;
+    }
+    
+    #playlist-song .artist, .time {
+        margin: 12px 12px;
+        font-size: 12px;
+    }
+    
+    #playlist-song .controls-song {
+        margin: 4px 4px;
+    }  
+}
