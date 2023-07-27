@@ -1,134 +1,92 @@
 import React from "react";
+import axios from 'axios';
 
 import Song from "../components/Song"
 import Playlist from "../components/Playlist"
 
 export default class Home extends React.Component {
-  render() {
-    const Songs = [    
-      {
-        title: "As It Was",
-        artists: ["Harry Styles"],
-        album: "Harry's House",
-        duration: "2:54",
-        url: "http://play",
-        playCount: 10000000
-      },
-      {
-        title: "Heat Waves",
-        artists: ["Glass Animals"],
-        album: "Dreamland",
-        duration: "3:44",
-        url: "http://play",
-        playCount: 5000000
-      },
-      {
-        title: "Stay",
-        artists: ["The Kid Laroi", "Justin Bieber"],
-        album: "Stay",
-        duration: "2:04",
-        url: "http://play",
-        playCount: 3000000
-      },
-      {
-        title: "About Damn Time",
-        artists: ["Lizzo"],
-        album: "Special",
-        duration: "3:32",
-        url: "http://play",
-        playCount: 2000000
-      },
-      {
-        title: "Enemy",
-        artists: ["Imagine Dragons", "JID"],
-        album: "Mercury - Act 1",
-        duration: "3:03",
-        url: "http://play",
-        playCount: 1000000
-      },
-      {
-        title: "Levitating",
-        artists: ["Dua Lipa"],
-        album: "Future Nostalgia",
-        duration: "3:32",
-        url: "http://play",
-        playCount: 500000
-      },
-      {
-        title: "Montero (Call Me by Your Name)",
-        artists: ["Lil Nas X"],
-        album: "Montero",
-        duration: "2:13",
-        url: "http://play",
-        playCount: 300000
-      },
-      {
-        title: "We Don't Talk About Bruno",
-        artists: ["Encanto Cast"],
-        album: "Encanto",
-        duration: "3:07",
-        url: "http://play",
-        playCount: 200000
-      },
-      {
-        title: "Bad Habits",
-        artists: ["Ed Sheeran"],
-        album: "= (Equals)",
-        duration: "3:52",
-        url: "http://play",
-        playCount: 100000
-      },
-      {
-        title: "abcdefu",
-        artists: ["Gabe Adams-Spalding"],
-        album: "abcdefu",
-        duration: "3:22",
-        url: "http://play",
-        playCount: 50000
-      }
-    ];
+  state = {
+    songs: [],
+    playlists: [],
+    searchQuery: '',
+    filteredData: [],
+  }
 
-    const Playlists = [
-      {
-        title: 'Top Song',
-        song: [    
-          {
-            title: "As It Was",
-            artists: ["Harry Styles"],
-            album: "Harry's House",
-            duration: "2:54",
-            url: "http://play",
-            playCount: 10000000
-          },
-          {
-            title: "Heat Waves",
-            artists: ["Glass Animals"],
-            album: "Dreamland",
-            duration: "3:44",
-            url: "http://play",
-            playCount: 5000000
-          }
-        ]
+  componentDidMount() {
+    this.getAllSong();
+    this.getAllPlaylist();
+    document.addEventListener('click', this.handleOutsideClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleOutsideClick);
+  }
+
+  getAllSong = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/songs', {mode:'cors'});
+      this.setState({ songs: response.data.songs });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  getAllPlaylist = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/playlists', {mode:'cors'});
+      this.setState({ playlists: response.data.playlists });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  handleSearch = (event) => {
+    const searchQuery = event.target.value;
+    this.setState({ searchQuery }, () => {
+      if (searchQuery.trim() === '') {
+        this.setState({ filteredData: [] });
+      } else {
+        this.filterData();
       }
-    ];
+    });
+  };
+
+  filterData = () => {
+    const { songs, searchQuery } = this.state;
+    const filteredData = songs.filter((song) => song.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    this.setState({ filteredData });
+  };
+
+  handleOutsideClick = (event) => {
+    const searchBar = document.getElementById('searchBar');
+    if (searchBar && !searchBar.contains(event.target)) {
+      this.setState({ filteredData: [] });
+    }
+  };
+
+  render() {
+    const { songs, playlists, searchQuery, filteredData } = this.state;
 
     return (
       <div>
         <div className="search-bar">
-          <input type="search" placeholder="Cari lagu"/>
+          <input type="search" id="searchBar" value={ searchQuery } onChange={ this.handleSearch } placeholder="Cari lagu"/>
+            {filteredData.map((song) => {
+              return(
+                <div className="search-option">
+                {song.title}
+              </div>
+              )
+            })}
         </div> 
         <section id="all-songs">
           <h2 className="title-section">All Songs</h2>
           <div className="list">
-            {Songs.map((song) => {
+            {songs.map((song) => {
               return(
                 <Song
                   title= {song.title}
                   artists= {song.artists}
-                  // album= {song.album}
-                  // duration= {song.duration}
-                  // url= {song.url}
-                  // playCount= {song.playCount}
                 />
               )
             })}
@@ -137,7 +95,7 @@ export default class Home extends React.Component {
         <section id="most-played-songs">
           <h2 className="title-section">Most Played Songs</h2>
           <div className="list">
-          {Songs.map((song) => {
+          {songs.map((song) => {
               return(
                 <Song
                   title= {song.title}
@@ -150,7 +108,7 @@ export default class Home extends React.Component {
         <section id="your-playlist">
           <h2 className="title-section">Your Playlist</h2>
           <div className="list">
-            {Playlists.map((playlist) => {
+            {playlists.map((playlist) => {
               return(
                 <Playlist 
                   title= {playlist.title}

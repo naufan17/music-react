@@ -25,6 +25,17 @@ section {
     margin-top: 20px;
 }
 
+.search-option {
+    border: none;
+    text-align: left;
+    width: 50%;
+    height: 48px;
+    padding: 16px;
+    border-radius: 20px;
+    font-size: 16px;
+    background-color: #374151;
+    color: #f3f4f6;
+}
 
 input[type="search"] {
     border: none;
@@ -77,6 +88,7 @@ a .title-section:hover {
     background-color: #1f2937;
     transition: background-color 0.2s ease;
     display: inline-block;
+    overflow: hidden;
     width: 240px;
     height: auto;
     margin: 4px;

@@ -3,6 +3,13 @@
         padding: 16px;
     }
 
+    .search-option {
+        width: 70%;
+        height: 44px;
+        padding: 14px;
+        font-size: 14px;
+    }
+
     input[type="search"] {
         width: 70%;
         height: 44px;
@@ -115,6 +122,13 @@
 @media (max-width: 670px) {
     section {
         padding: 12px;
+    }
+
+    .search-option {
+        width: 90%;
+        height: 40px;
+        padding: 12px;
+        font-size: 12px;
     }
 
     input[type="search"] {
