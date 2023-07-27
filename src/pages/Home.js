@@ -1,8 +1,7 @@
 import React from "react";
 import axios from 'axios';
 
-import Song from "../components/Song"
-import Playlist from "../components/Playlist"
+import Card from "../components/Card"
 
 export default class Home extends React.Component {
   state = {
@@ -51,17 +50,17 @@ export default class Home extends React.Component {
     });
   };
 
-  filterData = () => {
-    const { songs, searchQuery } = this.state;
-    const filteredData = songs.filter((song) => song.title.toLowerCase().includes(searchQuery.toLowerCase()));
-    this.setState({ filteredData });
-  };
-
   handleOutsideClick = (event) => {
     const searchBar = document.getElementById('searchBar');
     if (searchBar && !searchBar.contains(event.target)) {
       this.setState({ filteredData: [] });
     }
+  };
+
+  filterData = () => {
+    const { songs, searchQuery } = this.state;
+    const filteredData = songs.filter((song) => song.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    this.setState({ filteredData });
   };
 
   render() {
@@ -84,9 +83,10 @@ export default class Home extends React.Component {
           <div className="list">
             {songs.map((song) => {
               return(
-                <Song
+                <Card
                   title= {song.title}
                   artists= {song.artists}
+                  image= {song.image}
                 />
               )
             })}
@@ -97,9 +97,10 @@ export default class Home extends React.Component {
           <div className="list">
           {songs.map((song) => {
               return(
-                <Song
+                <Card
                   title= {song.title}
                   artists= {song.artists}
+                  image= {song.image}
                 />
               )
             })}
@@ -110,8 +111,9 @@ export default class Home extends React.Component {
           <div className="list">
             {playlists.map((playlist) => {
               return(
-                <Playlist 
+                <Card
                   title= {playlist.title}
+                  image= {playlist.image}
                 />
               )
             })}
