@@ -46,7 +46,6 @@ section {
     background-color: #1f2937;  
 }
 
-
 input[type="search"] {
     border: none;
     width: 50%;
@@ -229,7 +228,7 @@ button:hover {
     border-radius: 8px;
 }
 
-#playlist-header .playlist-title {
+#playlist-header .title {
     margin: 10px;
     font-size: 28px;
 }
@@ -264,14 +263,14 @@ button:hover {
     margin: 18px 18px;
     font-size: 18px;
     color: #f3f4f6;
-    width: 600px;
+    width: 400px;
 }
 
-#playlist-song .artist, .time {
+#playlist-song .artist, .album, .time {
     margin: 18px 18px;
     font-size: 16px;
     color: #f3f4f6;
-    width: 300px;
+    width: 200px;
 }
 
 #playlist-song .controls-song {

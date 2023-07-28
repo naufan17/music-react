@@ -13,9 +13,10 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" Component={ Home } />
-        <Route path="/song/:id" Component={ Song } />
-        <Route path="/playlist/:id" Component={ Playlist } />
+        <Route path="/" Component={Home}/>
+        <Route path="/song/:id" Component={Song}/>
+        <Route path="/playlist/:id" Component={Playlist}/>
+        <Route path="/playlist/song/:id" Component={Song}/>
       </Routes>
     </BrowserRouter>
   );

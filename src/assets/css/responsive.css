@@ -93,7 +93,7 @@
         width: 60%;
     }
         
-    #playlist-header .playlist-title {
+    #playlist-header .title {
         margin: 8px;
         font-size: 24px;
     }
@@ -109,10 +109,10 @@
     
     #playlist-song .title{
         margin: 16px 16px;
-        font-size: 16px;
+        font-size: 14px;
     }
     
-    #playlist-song .artist, .time {
+    #playlist-song .artist, .album, .time {
         margin: 16px 16px;
         font-size: 14px;
     }
@@ -219,7 +219,7 @@
         width: 70%;
     }
 
-    #playlist-header .playlist-title {
+    #playlist-header .title {
         margin: 6px;
         font-size: 20px;
     }
@@ -238,7 +238,7 @@
         font-size: 12px;
     }
     
-    #playlist-song .artist, .time {
+    #playlist-song .artist, .album, .time {
         margin: 12px 12px;
         font-size: 12px;
     }

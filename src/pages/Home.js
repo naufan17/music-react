@@ -58,17 +58,14 @@ export default function Home() {
     }
   };
 
-  const handleOutsideClick = (event) => {
-    const searchBar = document.getElementById('searchBar');
-    if (searchBar && !searchBar.contains(event.target)) {
-      setFilteredData([])
-    }
+  const handleOutsideClick = () => {
+    setFilteredData([])
   };
 
   return (
     <div>
       <div className="search-bar">
-        <input type="search" id="searchBar" onChange={handleSearch} placeholder="Cari lagu"/>
+        <input type="search" onChange={handleSearch} placeholder="Cari lagu"/>
           {filteredData.map((song) => {
             return(
               <Option
