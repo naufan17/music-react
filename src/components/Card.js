@@ -1,17 +1,15 @@
 import React from "react";
 
-export default class Card extends React.Component {
-    render() {
-        return (
-            <div className="card">
-                <a href="/">
-                    <img src={this.props.image}/>
-                    <div className="details">
-                        <h3 className="title">{this.props.title}</h3>
-                        <p className="artist">{this.props.artists}</p>
-                    </div>
-                </a>
-            </div>
-        );    
-    }
+export default function Card({id, title, artists, image, url}) {
+    return (
+        <div className="card">
+            <a href={url}>
+                <img src={image} alt="{title}"/>
+                <div className="details" key={id}>
+                    <h3 className="title">{title}</h3>
+                    <p className="artist">{artists}</p>
+                </div>
+            </a>
+        </div>
+    );    
 }
