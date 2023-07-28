@@ -59,17 +59,20 @@
     }
 
     #player .title {
-        margin: 10px;
-        font-size: 24px;
+        margin: 14px;
+        font-size: 20px;
+    }
+
+    .controls {
+        margin: 13px;
     }
     
     #player .artist {
-        margin: 10px;
-        font-size: 16px;
+        margin: 14px;
+        font-size: 14px;
     }
 
     .play-button , .previous-button, .next-button, .add-song-button, .delete-song-button{
-        margin: 0 8px;
         font-size: 14px;
     }
     
@@ -180,13 +183,17 @@
     }
 
     #player .title {
-        margin: 8px;
-        font-size: 20px;
+        margin: 12px;
+        font-size: 16px;
     }
     
     #player .artist {
-        margin: 8px;
+        margin: 12px;
         font-size: 12px;
+    }
+
+    .controls{
+        margin: 12px;
     }
 
     .play-button , .previous-button, .next-button, .add-song-button, .delete-song-button{

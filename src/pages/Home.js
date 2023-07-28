@@ -1,7 +1,8 @@
-import {React, useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import axios from 'axios';
 
 import Card from "../components/Card"
+import Option from "../components/Option"
 
 export default function Home() {
   const [allSongs, setAllSongs] = useState([]);
@@ -70,11 +71,12 @@ export default function Home() {
         <input type="search" id="searchBar" onChange={handleSearch} placeholder="Cari lagu"/>
           {filteredData.map((song) => {
             return(
-              <div className="search-option">
-                <a href="/song">
-                  {song.title} - {song.artists}
-                </a>
-            </div>
+              <Option
+                id = {song.song_id}
+                title = {song.title}
+                artists = {song.artists}
+                url = {'song'}
+              />
             )
           })}
       </div> 
@@ -84,11 +86,11 @@ export default function Home() {
           {allSongs.map((song) => {
             return(
               <Card
-                id= {song.song_id}
-                title= {song.title}
-                artists= {song.artists}
-                image= {song.image}
-                url= {'song'}
+                id = {song.song_id}
+                title = {song.title}
+                artists = {song.artists}
+                image = {song.image}
+                url = {'song'}
               />
             )
           })}
@@ -100,11 +102,11 @@ export default function Home() {
           {mostPlayedSongs.map((song) => {
             return(
               <Card
-                id= {song.song_id}
-                title= {song.title}
-                artists= {song.artists}
-                image= {song.image}
-                url= {'song'}
+                id = {song.song_id}
+                title = {song.title}
+                artists = {song.artists}
+                image = {song.image}
+                url = {'song'}
               />
             )
           })}
@@ -116,10 +118,10 @@ export default function Home() {
           {playlists.map((playlist) => {
             return(
               <Card
-                id= {playlist.playlist_id}
-                title= {playlist.title}
-                image= {playlist.image}
-                url= {'playlist'}
+                id = {playlist.playlist_id}
+                title = {playlist.title}
+                image = {playlist.image}
+                url = {'playlist'}
               />
             )
           })}

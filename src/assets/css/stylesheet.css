@@ -38,9 +38,14 @@ section {
     color: #f3f4f6;
 }
 
-a:visited {
+.search-option a{
     color: #f3f4f6;  
 }
+
+.search-option:hover{
+    background-color: #1f2937;  
+}
+
 
 input[type="search"] {
     border: none;
@@ -161,31 +166,30 @@ button:hover {
 }
 
 #player .title {
-    margin: 10px;
-    font-size: 28px;
+    margin: 16px;
+    font-size: 24px;
 }
 
 #player .artist {
-    margin: 10px;
-    font-size: 20px;
+    margin: 16px;
+    font-size: 18px;
 }
 
 .controls {
     display: flex;
     justify-content: center;
+    margin: 16px;
 }
 
 .play-button , .previous-button, .next-button, .add-song-button, .delete-song-button{
     background-color: #6b7280;
-    margin: 0 10px;
 }
 
 .audio-player {
     display: flex;
     width: 80%;
-    height: 60px;
+    height: 40px;
     border-radius: 4px;
-    padding: 10px;
 }
 
 .progress-bar {
@@ -260,12 +264,14 @@ button:hover {
     margin: 18px 18px;
     font-size: 18px;
     color: #f3f4f6;
+    width: 600px;
 }
 
 #playlist-song .artist, .time {
     margin: 18px 18px;
     font-size: 16px;
     color: #f3f4f6;
+    width: 300px;
 }
 
 #playlist-song .controls-song {
