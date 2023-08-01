@@ -66,19 +66,20 @@ export default function Header() {
 
   const handleLogin = () => {
     const clientId = '0f2090965310456cbf20af448ed99024';
-    const scope = 'user-read-private user-read-email';
+    const response_type = 'code';
     const redirectUri = 'localhost:3000';
-    const state = generateRandomString(16);
-    const codeVerifier = generateRandomString(128);
-    const codeChallenge = generateCodeChallenge(codeVerifier)
+    const scope = 'user-read-private user-read-email';
+    let state = generateRandomString(16);
+    let codeVerifier = generateRandomString(128);
+    let codeChallenge = generateCodeChallenge(codeVerifier)
   
     localStorage.setItem('code_verifier', codeVerifier);
   
     let args = new URLSearchParams({
-      response_type: 'code',
       client_id: clientId,
-      scope: scope,
+      response_type: response_type,
       redirect_uri: redirectUri,
+      scope: scope,
       state: state,
       code_challenge_method: 'S256',
       code_challenge: codeChallenge
