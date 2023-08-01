@@ -67,7 +67,7 @@ export default function Header() {
   const handleLogin = () => {
     const clientId = '0f2090965310456cbf20af448ed99024';
     const response_type = 'code';
-    const redirectUri = 'localhost:3000';
+    const redirectUri = 'localhost:3000/dashboard';
     const scope = 'user-read-private user-read-email';
     let state = generateRandomString(16);
     let codeVerifier = generateRandomString(128);

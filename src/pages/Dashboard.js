@@ -50,7 +50,6 @@ const Dashboard = () => {
     } catch (error) {
       console.error('Error', error);
     }
-;
   }
 
   return (
