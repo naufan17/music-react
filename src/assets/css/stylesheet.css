@@ -55,6 +55,7 @@ input[type="search"] {
     font-size: 16px;
     background-color: #1f2937;
     color: #f3f4f6;
+    margin-left: 128px;
 }
   
 input[type="search"]:focus {
@@ -66,6 +67,21 @@ input[type="search"]:focus {
 
 input[type = 'search']:focus::placeholder {
     color: transparent;
+}
+
+.login-button {
+    background-color: #1f2937;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    float: right;
+    margin: 4px 24px;
+    font-size: 14px;
+    width: 80px;
+}
+  
+.login-button:hover {
+    background-color: #374151;
 }
 
 .title-section {
