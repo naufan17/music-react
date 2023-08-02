@@ -33,7 +33,7 @@ export default function Song() {
                     <HeaderSong
                         id = {song.song_id}
                         title = {song.title}
-                        artists = {song.artists}
+                        artists = {song.artists.map(artist => artist).join(', ')}
                         image = {song.image}
                     />
                 )

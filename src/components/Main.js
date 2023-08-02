@@ -43,8 +43,8 @@ export default function Main() {
     };
     
     return (
-        <div>
-          <section id="all-songs">
+      <div>
+        <section id="all-songs">
           <h2 className="title-section">All Songs</h2>
           <div className="list">
             {allSongs.map((song) => {
@@ -52,7 +52,7 @@ export default function Main() {
                 <Card
                   id = {song.song_id}
                   title = {song.title}
-                  artists = {song.artists}
+                  artists = {song.artists.map(artist => artist).join(', ')}
                   image = {song.image}
                   url = {'song'}
                 />
@@ -68,7 +68,7 @@ export default function Main() {
                 <Card
                   id = {song.song_id}
                   title = {song.title}
-                  artists = {song.artists}
+                  artists = {song.artists.map(artist => artist).join(', ')}
                   image = {song.image}
                   url = {'song'}
                 />

@@ -66,27 +66,27 @@ export default function Header() {
 
   const handleLogin = () => {
     const clientId = '0f2090965310456cbf20af448ed99024';
-    const redirectUri = 'localhost:3000/dashboard';
-    let codeVerifier = generateRandomString(128);
+    const redirectUri = 'http://localhost:3000/dashboard';
+    // let codeVerifier = generateRandomString(128);
     
-    localStorage.setItem('code_verifier', codeVerifier);
+    // localStorage.setItem('code_verifier', codeVerifier);
 
-    generateCodeChallenge(codeVerifier).then(codeChallenge => {
+    // generateCodeChallenge(codeVerifier).then(codeChallenge => {
       let state = generateRandomString(16);
       let scope = 'user-read-private user-read-email';
 
       let args = new URLSearchParams({
-        response_type: 'code',
+        response_type: 'token',
         client_id: clientId,
         scope: scope,
         redirect_uri: redirectUri,
         state: state,
-        code_challenge_method: 'S256',
-        code_challenge: codeChallenge
+        // code_challenge_method: 'S256',
+        // code_challenge: codeChallenge
       });
     
       window.location = 'https://accounts.spotify.com/authorize?' + args;
-    });
+    // });
   };
 
   return (
@@ -99,7 +99,7 @@ export default function Header() {
                 <Option
                     id = {song.song_id}
                     title = {song.title}
-                    artists = {song.artists}
+                    artists = {song.artists.map(artist => artist).join(', ')}
                     url = {'song'}
                 />
                 )

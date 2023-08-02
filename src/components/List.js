@@ -11,7 +11,7 @@ export default function ListSong({song, url='song'}) {
                         <a href={link}>
                             <div id="song-1" className="player-song">
                                 <h3 className="title">{song.title}</h3>
-                                <p className="artist">{song.artists}</p>
+                                <p className="artist">{song.artists.map(artist => artist).join(', ')}</p>
                                 <p className="album">{song.album}</p>
                                 <p className="time">{song.duration}</p>
                                 <div className="controls-song">
