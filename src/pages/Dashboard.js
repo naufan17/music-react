@@ -14,21 +14,24 @@ const Dashboard = () => {
 
 
   const getAccessToken = async () => {
-    const grant_type = 'authorization_code';
     const clientId = '0f2090965310456cbf20af448ed99024';
-    const redirectUri = 'localhost:3000';
+    const redirectUri = 'localhost:3000/dashboard';
+
     let codeVerifier = localStorage.getItem('code_verifier');
 
     let body = new URLSearchParams({
-      grant_type: grant_type,
+      grant_type: 'authorization_code',
       code: code,
-      client_id: clientId,
       redirect_uri: redirectUri,
+      client_id: clientId,
       code_verifier: codeVerifier
     });
 
     try {
       const response = await axios.post('https://accounts.spotify.com/api/token', {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: body
       });
       localStorage.setItem('access_token', response.data.access_token);
@@ -37,7 +40,7 @@ const Dashboard = () => {
     }
   }
 
-  async function getProfile() {
+  const getProfile = async () => {
     let accessToken = localStorage.getItem('access_token');
   
     try {

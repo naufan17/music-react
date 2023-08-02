@@ -66,26 +66,27 @@ export default function Header() {
 
   const handleLogin = () => {
     const clientId = '0f2090965310456cbf20af448ed99024';
-    const response_type = 'code';
     const redirectUri = 'localhost:3000/dashboard';
-    const scope = 'user-read-private user-read-email';
-    let state = generateRandomString(16);
     let codeVerifier = generateRandomString(128);
-    let codeChallenge = generateCodeChallenge(codeVerifier)
-  
+    
     localStorage.setItem('code_verifier', codeVerifier);
-  
-    let args = new URLSearchParams({
-      client_id: clientId,
-      response_type: response_type,
-      redirect_uri: redirectUri,
-      scope: scope,
-      state: state,
-      code_challenge_method: 'S256',
-      code_challenge: codeChallenge
+
+    generateCodeChallenge(codeVerifier).then(codeChallenge => {
+      let state = generateRandomString(16);
+      let scope = 'user-read-private user-read-email';
+
+      let args = new URLSearchParams({
+        response_type: 'code',
+        client_id: clientId,
+        scope: scope,
+        redirect_uri: redirectUri,
+        state: state,
+        code_challenge_method: 'S256',
+        code_challenge: codeChallenge
+      });
+    
+      window.location = 'https://accounts.spotify.com/authorize?' + args;
     });
-  
-    window.location = 'https://accounts.spotify.com/authorize?' + args;
   };
 
   return (
