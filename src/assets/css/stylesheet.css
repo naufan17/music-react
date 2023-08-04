@@ -307,3 +307,18 @@ button:hover {
 #playlist-song .controls-song {
     margin: 8px 8px;
 }  
+  
+.loading-spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #3498db;
+    animation: spin 1s linear infinite;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+  
+@keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+}

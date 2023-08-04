@@ -23,7 +23,7 @@ const Dashboard = () => {
   useEffect(() => {
     // getAccessToken();
     getProfile();
-    getTrack();
+    // getTrack();
     getRecommendations();
     getPlaylist();
     document.addEventListener('click', handleOutsideClick);
@@ -80,25 +80,25 @@ const Dashboard = () => {
     }
   }
 
-  const getTrack = async () => {
-    let accessToken = localStorage.getItem('access_token');
+  // const getTrack = async () => {
+  //   let accessToken = localStorage.getItem('access_token');
   
-    try {
-      const response = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
-        headers: {
-          Authorization: 'Bearer ' + accessToken
-        },
-        params: {
-          time_range: 'short_term',
-          limit: 10,
-          offset: 5
-        },
-      });
-      setSongTrack(response.data.items);
-    } catch (error) {
-      console.error('Error', error);
-    }
-  }
+  //   try {
+  //     const response = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
+  //       headers: {
+  //         Authorization: 'Bearer ' + accessToken
+  //       },
+  //       params: {
+  //         time_range: 'short_term',
+  //         limit: 10,
+  //         offset: 5
+  //       },
+  //     });
+  //     setSongTrack(response.data.items);
+  //   } catch (error) {
+  //     console.error('Error', error);
+  //   }
+  // }
 
   const getRecommendations = async () => {
     let accessToken = localStorage.getItem('access_token');
@@ -116,6 +116,7 @@ const Dashboard = () => {
           seed_tracks: topTracksIds.join(',')
         },
       });
+      console.log(response.data.tracks);
       setSongRecommendation(response.data.tracks)
     } catch (error) {
       console.error('Error', error);
@@ -130,12 +131,7 @@ const Dashboard = () => {
         headers: {
           Authorization: 'Bearer ' + accessToken
         },
-        params: {
-          limit: 10,
-          offset: 5
-        },
       });
-      console.log(response.data.items);
       setPlaylist(response.data.items);
     } catch (error) {
       console.error('Error', error);
@@ -186,12 +182,13 @@ const Dashboard = () => {
                   id = {song.id}
                   title = {song.name}
                   artists = {song.artists.map(artist => artist.name).join(', ')}
+                  url = {'track'}
                 />
                 )
             })}
         </div> 
       </header>
-      <section id="all-songs">
+      {/* <section id="all-songs">
         <h2 className="title-section">Top Song</h2>
         <div className="list">
           {songTrack.map((song) => {
@@ -204,7 +201,7 @@ const Dashboard = () => {
             )
           })}
         </div>
-      </section> 
+      </section>  */}
       <section id="all-songs">
         <h2 className="title-section">Recommendations</h2>
         <div className="list">
@@ -214,6 +211,8 @@ const Dashboard = () => {
                 id = {song.id}
                 title = {song.name}
                 artists = {song.artists.map(artist => artist.name).join(', ')}
+                image = {song.album.images[0].url}
+                url = {'track'}
               />
             )
           })}
@@ -221,13 +220,15 @@ const Dashboard = () => {
       </section> 
       <section id="your-playlist">
           <h2 className="title-section">Your Playlist</h2>
+          <button className="add-song-button"><i className="fa-solid fa-plus"></i></button>
           <div className="list">
             {playlist.map((playlist) => {
               return(
                 <Card
-                  id = {playlist.playlist_id}
+                  id = {playlist.id}
                   title = {playlist.name}
-                  image = {playlist.images.url}
+                  image = {playlist.images[0].url}
+                  url = {'playlists'}
                 />
               )
             })}

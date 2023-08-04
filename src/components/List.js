@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function ListSong({song, url='song'}) {
+export default function List({song, url='song'}) {
+    console.log(song)
     return (
         <div>
             {song.map((song) => {
