@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import Card from "../components/Card"
@@ -11,17 +12,12 @@ const Dashboard = () => {
   const [songTrack, setSongTrack] = useState([]);
   const [songRecommendation, setSongRecommendation] = useState([]);
   const [playlist, setPlaylist] = useState([]);
-
-  // const urlParams = new URLSearchParams(window.location.search);
-  // let code = urlParams.get('code');
-
-  const url = window.location.href;
-  const queryParams = new URLSearchParams(url.split('#')[1]);
-  const accessToken = queryParams.get('access_token');
-  localStorage.setItem('access_token', accessToken);
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // getAccessToken();
+    getAccessToken();
+    isAccessTokenValid()
     getProfile();
     // getTrack();
     getRecommendations();
@@ -33,8 +29,33 @@ const Dashboard = () => {
     }
   }, []);
 
+  const isAccessTokenValid = () => {
+    let accessToken = localStorage.getItem('access_token');
 
-  // const getAccessToken = async () => {
+    if(accessToken.length < 10) {
+      navigate('/');
+    }
+  };
+
+  const getAccessToken = async () => {
+    // Impicit Grant
+    const url = window.location.href;
+    const queryParams = new URLSearchParams(url.split('#')[1]);
+    const accessToken = queryParams.get('access_token');  
+  
+    if (accessToken) {
+      localStorage.setItem('access_token', accessToken);
+    
+      const newUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
+    }
+
+    // Authorization ce PKCE
+
+    // const urlParams = new URLSearchParams(window.location.search);
+    // let code = urlParams.get('code');
+
+  
     // const clientId = '0f2090965310456cbf20af448ed99024';
     // const redirectUri = 'http://localhost:3000/dashboard';
 
@@ -62,7 +83,7 @@ const Dashboard = () => {
     // } catch (error) {
     //   console.error('Error', error);
     // }
-  // }
+  }
 
   const getProfile = async () => {
     let accessToken = localStorage.getItem('access_token');
@@ -74,7 +95,7 @@ const Dashboard = () => {
         }
       });
       setDataProfile(response.data);
-      setDataProfileImage(response.data.images[0].url);
+      setDataProfileImage(response.data.images[0].url);  
     } catch (error) {
       console.error('Error', error);
     }
@@ -116,7 +137,6 @@ const Dashboard = () => {
           seed_tracks: topTracksIds.join(',')
         },
       });
-      console.log(response.data.tracks);
       setSongRecommendation(response.data.tracks)
     } catch (error) {
       console.error('Error', error);
@@ -167,14 +187,36 @@ const Dashboard = () => {
     setSearchSong([])
   };
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    navigate('/');
+  };
+
   return (
     <div>
       <header className="header">
         <div className="search-bar">
           <input type="search" onChange={handleSearch} placeholder="Cari lagu"/>
-          <div className="profile">
+          {/* <div className="profile">
             <img src={dataProfileImage} alt=''/>
             <p>{dataProfile.display_name}</p>
+          </div> */}
+          <div className="dropdown">
+            <button className="logout-button" onClick={toggleDropdown}>
+              <img src={dataProfileImage} alt=''/>
+              </button>
+            {isOpen && (
+              <div className="dropdown-content">
+                <p>{dataProfile.display_name}</p>
+                <button className='logout' onClick={handleLogout}>                
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
           {searchSong.map((song) => {
                 return(
@@ -189,7 +231,7 @@ const Dashboard = () => {
         </div> 
       </header>
       {/* <section id="all-songs">
-        <h2 className="title-section">Top Song</h2>
+        <h2 className="title-section">Track</h2>
         <div className="list">
           {songTrack.map((song) => {
             return(

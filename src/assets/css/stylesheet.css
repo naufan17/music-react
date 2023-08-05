@@ -78,10 +78,47 @@ input[type = 'search']:focus::placeholder {
     margin: 4px 24px;
     font-size: 14px;
     width: 80px;
+    height: auto;
 }
   
 .login-button:hover {
     background-color: #374151;
+}
+
+.logout-button {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    padding: 4px 4px;
+    cursor: pointer;
+    float: right;
+    margin: 0 60px;
+    font-size: 14px;
+    width: 56px;
+    border-radius: 50%;
+    height: 56px;
+}
+
+.logout-button img{
+    width: 48px;
+    border-radius: 50%;
+}
+  
+.logout-button:hover {
+    background-color: #374151;
+}
+
+.logout {
+    background-color: transparent;
+    width: 62px;
+    font-size: 14px;
+    height: auto;
+    color: #f3f4f6;
+    border: none;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background-color: transparent;
 }
 
 .profile {
@@ -322,3 +359,32 @@ button:hover {
       transform: rotate(360deg);
     }
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+  
+.dropdown-toggle {
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    text-align: left;
+    font-size: 14px;
+    background-color: #1f2937;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+.dropdown-content p {
+    margin: 0 8px;
+    margin-bottom: 8px;
+}
+
