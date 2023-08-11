@@ -1,12 +1,11 @@
 import { React, useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import Lists from "../components/Lists"
-import HeaderPlaylist from "../components/HeaderPlaylist"
+import List from "../../components/Spotify/List"
+import HeaderPlaylist from "../../components/HeaderPlaylist"
 
-export default function Playlists() {
+export default function Playlist() {
     const [Playlists, setPlaylists] = useState([]);
     const [Tracks, setTracks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -52,7 +51,7 @@ export default function Playlists() {
             </section>
             <section id="playlist-song">
                 <h2 className="title-section">Songs in Playlist</h2>
-                <Lists
+                <List
                     Tracks = {Tracks}
                 />
             </section>

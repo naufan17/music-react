@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react";
 import axios from 'axios';
 
-import Option from "../components/Option"
+import Option from "../Option"
 
 export default function Header() {
   const [allSongs, setAllSongs] = useState([]);
@@ -66,7 +66,7 @@ export default function Header() {
 
   const handleLogin = () => {
     const clientId = '0f2090965310456cbf20af448ed99024';
-    const redirectUri = 'http://localhost:3000/dashboard';
+    const redirectUri = 'http://localhost:3000/spotify';
     // let codeVerifier = generateRandomString(128);
     
     // localStorage.setItem('code_verifier', codeVerifier);
@@ -91,20 +91,20 @@ export default function Header() {
 
   return (
     <header className="header">
-        <div className="search-bar">
-            <input type="search" onChange={handleSearch} placeholder="Cari lagu"/>
-            <button className="login-button" onClick={handleLogin}>Login</button>
-            {filteredData.map((song) => {
-                return(
-                <Option
-                    id = {song.song_id}
-                    title = {song.title}
-                    artists = {song.artists.map(artist => artist).join(', ')}
-                    url = {'song'}
-                />
-                )
-            })}
-        </div> 
+      <div className="search-bar">
+        <input type="search" onChange={handleSearch} placeholder="Cari lagu"/>
+        <button className="login-button" onClick={handleLogin}>Login</button>
+        {filteredData.map((song) => {
+          return(
+            <Option
+              id = {song.song_id}
+              title = {song.title}
+              artists = {song.artists.map(artist => artist).join(', ')}
+              url = {'music/song'}
+            />
+          )
+        })}
+      </div> 
     </header>
   );
 }

@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Home from "./pages/Home";
-import Song from "./pages/Song";
-import Playlist from "./pages/Playlist";
-import Dashboard from "./pages/Dashboard";
-import Track from "./pages/Track";
-import Playlists from "./pages/Playlists";
+import HomeMusic from "./pages/Music/Home";
+import SongMusic from "./pages/Music/Song";
+import PlaylistMusic from "./pages/Music/Playlist";
+import Dashboard from "./pages/Spotify/Dashboard";
+import TrackSpotify from "./pages/Spotify/Track";
+import PlaylistSpotify from "./pages/Spotify/Playlist";
 
 import './assets/css/App.css';
 import './assets/css/stylesheet.css';
@@ -16,13 +16,13 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" Component={Home}/>
-        <Route path="/song/:id" Component={Song}/>
-        <Route path="/playlist/:id" Component={Playlist}/>
-        <Route path="/playlist/song/:id" Component={Song}/>
-        <Route path="/dashboard" Component={Dashboard}/>
-        <Route path="/track/:id" Component={Track}/>
-        <Route path="/playlists/:id" Component={Playlists}/>
+        <Route path="/" Component={HomeMusic}/>
+        <Route path="/music/song/:id" Component={SongMusic}/>
+        <Route path="/music/playlist/:id" Component={PlaylistMusic}/>
+        <Route path="/music/playlist/song/:id" Component={SongMusic}/>
+        <Route path="/spotify" Component={Dashboard}/>
+        <Route path="/spotify/track/:id" Component={TrackSpotify}/>
+        <Route path="/spotify/playlist/:id" Component={PlaylistSpotify}/>
       </Routes>
     </Router>
   );

@@ -2,13 +2,9 @@ import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import Card from "../components/Card"
-import Option from "../components/Option"
+import Card from "../../components/Card"
 
-const Dashboard = () => {
-  const [dataProfile, setDataProfile] = useState([]);
-  const [dataProfileImage, setDataProfileImage] = useState([]);
-  const [searchSong, setSearchSong] = useState([]);
+const Main = () => {
   const [songTrack, setSongTrack] = useState([]);
   const [songRecommendation, setSongRecommendation] = useState([]);
   const [playlist, setPlaylist] = useState([]);
@@ -18,15 +14,9 @@ const Dashboard = () => {
   useEffect(() => {
     getAccessToken();
     isAccessTokenValid()
-    getProfile();
     // getTrack();
     getRecommendations();
     getPlaylist();
-    document.addEventListener('click', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('click', handleOutsideClick);
-    }
   }, []);
 
   const isAccessTokenValid = () => {
@@ -83,22 +73,6 @@ const Dashboard = () => {
     // } catch (error) {
     //   console.error('Error', error);
     // }
-  }
-
-  const getProfile = async () => {
-    let accessToken = localStorage.getItem('access_token');
-  
-    try {
-      const response = await axios.get('https://api.spotify.com/v1/me', {
-        headers: {
-          Authorization: 'Bearer ' + accessToken
-        }
-      });
-      setDataProfile(response.data);
-      setDataProfileImage(response.data.images[0].url);  
-    } catch (error) {
-      console.error('Error', error);
-    }
   }
 
   // const getTrack = async () => {
@@ -158,78 +132,8 @@ const Dashboard = () => {
     }
   }
 
-  const handleSearch = async(event) => {
-    const keyword = event.target.value;
-    let accessToken = localStorage.getItem('access_token');
-
-    if (keyword.trim() === '') {
-      setSearchSong([])
-    } else {
-      try {
-        const response = await axios.get('https://api.spotify.com/v1/search', {
-          headers: {
-            Authorization: 'Bearer ' + accessToken
-          },
-          params: {
-            q: keyword,
-            type: 'track',
-            limit: 10
-          },
-        });
-        setSearchSong(response.data.tracks.items)
-      } catch (error) {
-        console.error('Error', error);
-      }
-    }  
-  };
-
-  const handleOutsideClick = () => {
-    setSearchSong([])
-  };
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('access_token');
-    navigate('/');
-  };
-
   return (
     <div>
-      <header className="header">
-        <div className="search-bar">
-          <input type="search" onChange={handleSearch} placeholder="Cari lagu"/>
-          {/* <div className="profile">
-            <img src={dataProfileImage} alt=''/>
-            <p>{dataProfile.display_name}</p>
-          </div> */}
-          <div className="dropdown">
-            <button className="logout-button" onClick={toggleDropdown}>
-              <img src={dataProfileImage} alt=''/>
-              </button>
-            {isOpen && (
-              <div className="dropdown-content">
-                <p>{dataProfile.display_name}</p>
-                <button className='logout' onClick={handleLogout}>                
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
-          {searchSong.map((song) => {
-                return(
-                <Option
-                  id = {song.id}
-                  title = {song.name}
-                  artists = {song.artists.map(artist => artist.name).join(', ')}
-                  url = {'track'}
-                />
-                )
-            })}
-        </div> 
-      </header>
       {/* <section id="all-songs">
         <h2 className="title-section">Track</h2>
         <div className="list">
@@ -254,7 +158,7 @@ const Dashboard = () => {
                 title = {song.name}
                 artists = {song.artists.map(artist => artist.name).join(', ')}
                 image = {song.album.images[0].url}
-                url = {'track'}
+                url = {'spotify/track'}
               />
             )
           })}
@@ -262,7 +166,6 @@ const Dashboard = () => {
       </section> 
       <section id="your-playlist">
           <h2 className="title-section">Your Playlist</h2>
-          <button className="add-song-button"><i className="fa-solid fa-plus"></i></button>
           <div className="list">
             {playlist.map((playlist) => {
               return(
@@ -270,7 +173,7 @@ const Dashboard = () => {
                   id = {playlist.id}
                   title = {playlist.name}
                   image = {playlist.images[0].url}
-                  url = {'playlists'}
+                  url = {'spotify/playlist'}
                 />
               )
             })}
@@ -280,4 +183,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Main;
