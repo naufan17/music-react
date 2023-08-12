@@ -24,6 +24,27 @@
         width: 76px;
     }
 
+    .profile {
+        margin: 0 62px;
+        width: 48px;
+        height: 48px;
+    }
+
+    .dropdown-content p{
+        font-size: 10px
+    }
+    
+    .profile img{
+        width: 40px;
+    }
+          
+    .logout-button {
+        background-color: transparent;
+        width: 62px;
+        font-size: 12px;
+        height: auto;
+    }
+    
     .title-section {
         margin: 16px 0;
         font-size: 20px;
@@ -153,6 +174,23 @@
         margin: 8px 8px;
         font-size: 10px;
         width: 72px;
+    }
+
+    .profile {
+        margin: 0 62px;
+        width: 44px;
+        height: 44px;
+    }
+    
+    .profile img{
+        width: 36px;
+    }
+          
+    .logout-button {
+        background-color: transparent;
+        width: 62px;
+        font-size: 10px;
+        height: auto;
     }
 
     .title-section {

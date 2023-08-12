@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Option from "../../components/Option"
 
-const Header = () => {
+export default function Header() {
   const [dataProfile, setDataProfile] = useState([]);
   const [dataProfileImage, setDataProfileImage] = useState([]);
   const [searchSong, setSearchSong] = useState([]);
@@ -26,7 +26,7 @@ const Header = () => {
   const isAccessTokenValid = () => {
     let accessToken = localStorage.getItem('access_token');
 
-    if(accessToken.length < 10) {
+    if(!accessToken) {
       navigate('/');
     }
   };
@@ -142,13 +142,13 @@ const Header = () => {
           <p>{dataProfile.display_name}</p>
         </div> */}
         <div className="dropdown">
-          <button className="logout-button" onClick={toggleDropdown}>
+          <button className="profile" onClick={toggleDropdown}>
             <img src={dataProfileImage} alt=''/>
             </button>
           {isOpen && (
             <div className="dropdown-content">
               <p>{dataProfile.display_name}</p>
-              <button className='logout' onClick={handleLogout}>                
+              <button className='logout-button' onClick={handleLogout}>                
                 Logout
               </button>
             </div>
@@ -168,5 +168,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

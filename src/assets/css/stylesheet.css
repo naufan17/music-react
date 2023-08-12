@@ -85,29 +85,27 @@ input[type = 'search']:focus::placeholder {
     background-color: #374151;
 }
 
-.logout-button {
+.profile {
     background-color: #1f2937;
     color: #f3f4f6;
-    padding: 4px 4px;
     cursor: pointer;
     float: right;
     margin: 0 60px;
-    font-size: 14px;
-    width: 56px;
+    width: 52px;
     border-radius: 50%;
-    height: 56px;
+    height: 52px;
 }
 
-.logout-button img{
-    width: 48px;
+.profile img{
+    width: 44px;
     border-radius: 50%;
 }
   
-.logout-button:hover {
+.profile:hover {
     background-color: #374151;
 }
 
-.logout {
+.logout-button {
     background-color: transparent;
     width: 62px;
     font-size: 14px;
@@ -117,23 +115,8 @@ input[type = 'search']:focus::placeholder {
     cursor: pointer;
 }
 
-.logout:hover {
+.logout-button:hover {
     background-color: transparent;
-}
-
-.profile {
-    background-color: #1f2937;
-    color: #f3f4f6;
-    padding: 12px 24px;
-    border-radius: 8px;
-    float: right;
-    margin: 4px 24px;
-    font-size: 14px;
-    width: 120px;
-}
-
-.profile p {
-    margin-top: 4px;
 }
 
 .title-section {

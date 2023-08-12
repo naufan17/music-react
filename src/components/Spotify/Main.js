@@ -4,11 +4,10 @@ import axios from 'axios';
 
 import Card from "../../components/Card"
 
-const Main = () => {
+export default function Main() {
   const [songTrack, setSongTrack] = useState([]);
   const [songRecommendation, setSongRecommendation] = useState([]);
   const [playlist, setPlaylist] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,7 +21,7 @@ const Main = () => {
   const isAccessTokenValid = () => {
     let accessToken = localStorage.getItem('access_token');
 
-    if(accessToken.length < 10) {
+    if(!accessToken) {
       navigate('/');
     }
   };
@@ -182,5 +181,3 @@ const Main = () => {
     </div>
   );
 };
-
-export default Main;
